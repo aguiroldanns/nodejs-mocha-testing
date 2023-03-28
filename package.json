@@ -4,7 +4,7 @@
   "description": "Node JS unit testing with Mocha",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha './specs/**/*.spec.js'"
   },
   "repository": {
     "type": "git",
@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/aguiroldanns/Mocha#readme",
   "devDependencies": {
+    "chai": "^4.3.7",
     "mocha": "^10.2.0"
   }
 }
