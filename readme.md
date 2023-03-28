@@ -12,4 +12,8 @@ Node JS unit testing with Mocha
    > If yes, hat was returned?
 
 2. Mock
+
    > Mocking is avoid the actual call to a function and instead of the actual call, we just use a dummy call
+
+3. Stubs
+   > Stubs is assume that some function that is called in the tested function is returning some particular value

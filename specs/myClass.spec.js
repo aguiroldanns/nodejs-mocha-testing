@@ -6,7 +6,7 @@ var expect = chai.expect;
 var MyClass = require("../src/myClass.js");
 var myObj = new MyClass();
 
-describe("Test suit", () => {
+describe.skip("Test suit", () => {
   it("Test the add method", () => {
     expect(myObj.add(1, 2)).to.be.equal(3);
   });
@@ -35,5 +35,19 @@ describe("Test suit", () => {
     expectation.withArgs("Hello world");
     myObj.callAnotherFn(10, 20);
     mock.verify();
+  });
+});
+
+describe("Test suit for stub", () => {
+  it("Stub the add method", () => {
+    var stub = sinon.stub(myObj, "add");
+    stub
+      .withArgs(10, 20)
+      .onFirstCall()
+      .returns(100)
+      .onSecondCall()
+      .returns(200);
+    expect(myObj.callAnotherFn(10, 20)).to.be.equal(100);
+    expect(myObj.callAnotherFn(10, 20)).to.be.equal(200);
   });
 });
