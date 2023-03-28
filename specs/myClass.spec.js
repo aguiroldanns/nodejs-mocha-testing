@@ -27,4 +27,13 @@ describe("Test suit", () => {
     myObj.callTheCallback(callback);
     expect(callback.calledOnce).to.be.true;
   });
+
+  it("Mock the sayHello method", () => {
+    var mock = sinon.mock(myObj);
+    var expectation = mock.expects("sayHello");
+    expectation.exactly(1);
+    expectation.withArgs("Hello world");
+    myObj.callAnotherFn(10, 20);
+    mock.verify();
+  });
 });
