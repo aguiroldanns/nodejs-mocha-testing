@@ -22,12 +22,16 @@ class MyClass {
     callback();
   }
 
-  testPromise() {
-    return new Promise(function (resolve, reject) {
-      setTimeout(() => resolve(3), 500);
-    }).then(function (result) {
-      return result * 2;
-    });
+  async testPromise() {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => resolve(3), 1000);
+    })
+      .then((result) => {
+        return result * 2;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 }
 

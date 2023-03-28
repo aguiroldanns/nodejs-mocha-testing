@@ -1,14 +1,15 @@
-var chai = require("chai");
-var sinon = require("sinon");
+var chai = require("chai"); // Assertion library
+var sinon = require("sinon"); // Mocking library
 
+// Use chai.expect as expect
 var expect = chai.expect;
 
 var MyClass = require("../src/myClass.js");
 var myObj = new MyClass();
 
-// Describe is the test suit and it is the test case
-
+// 'describe' creates a test suite for a set of related tests
 describe.skip("Test suit", () => {
+  // 'it' creates an individual test case within the suite
   it("Test the add method", () => {
     expect(myObj.add(1, 2)).to.be.equal(3);
   });
@@ -31,17 +32,22 @@ describe.skip("Test suit", () => {
   });
 
   it("Mock the sayHello method", () => {
+    // Mock the object
     var mock = sinon.mock(myObj);
+    // Expectation
     var expectation = mock.expects("sayHello");
     expectation.exactly(1);
     expectation.withArgs("Hello world");
+    // Call the function
     myObj.callAnotherFn(10, 20);
+    // Verify expectations
     mock.verify();
   });
 });
 
 describe.skip("Test suit for stub", () => {
   it("Stub the add method", () => {
+    // Stub helps you to simulate the values that are returned by a function
     var stub = sinon.stub(myObj, "add");
     stub
       .withArgs(10, 20)
@@ -55,15 +61,20 @@ describe.skip("Test suit for stub", () => {
 });
 
 describe("Test the promise", () => {
-  it("Promist test case", function (done) {
-    // You use the parameter 'done' (that is a function) to indicates that the promise is finished
-    this.timeout(0); // The test wait until the promise finish
+  it("Promise test case", function (done) {
+    // 'timeout' set the time to wait in the test
+    // In this case, the timeout is setted to 0 so it disables the timeout for the test, so it will wait indefinitely for the promise resolve
+    this.timeout(0);
+
+    // In Mocha testing, 'done' is a way to handle asynchronous code and is used to signal the completion of an asynchronous test
     myObj
       .testPromise()
-      .then(function (result) {
-        expect(result).to.be.equal(61);
+      .then((result) => {
+        expect(result).to.be.equal(6);
         done();
       })
-      .catch(done);
+      .catch((err) => {
+        done(err);
+      });
   });
 });
