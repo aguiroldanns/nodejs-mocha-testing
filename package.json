@@ -1,0 +1,22 @@
+{
+  "name": "mocha",
+  "version": "1.0.0",
+  "description": "Node JS unit testing with Mocha",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aguiroldanns/Mocha.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aguiroldanns/Mocha/issues"
+  },
+  "homepage": "https://github.com/aguiroldanns/Mocha#readme",
+  "devDependencies": {
+    "mocha": "^10.2.0"
+  }
+}
