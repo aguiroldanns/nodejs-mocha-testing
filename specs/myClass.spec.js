@@ -6,6 +6,8 @@ var expect = chai.expect;
 var MyClass = require("../src/myClass.js");
 var myObj = new MyClass();
 
+// Describe is the test suit and it is the test case
+
 describe.skip("Test suit", () => {
   it("Test the add method", () => {
     expect(myObj.add(1, 2)).to.be.equal(3);
@@ -38,7 +40,7 @@ describe.skip("Test suit", () => {
   });
 });
 
-describe("Test suit for stub", () => {
+describe.skip("Test suit for stub", () => {
   it("Stub the add method", () => {
     var stub = sinon.stub(myObj, "add");
     stub
@@ -49,5 +51,19 @@ describe("Test suit for stub", () => {
       .returns(200);
     expect(myObj.callAnotherFn(10, 20)).to.be.equal(100);
     expect(myObj.callAnotherFn(10, 20)).to.be.equal(200);
+  });
+});
+
+describe("Test the promise", () => {
+  it("Promist test case", function (done) {
+    // You use the parameter 'done' (that is a function) to indicates that the promise is finished
+    this.timeout(0); // The test wait until the promise finish
+    myObj
+      .testPromise()
+      .then(function (result) {
+        expect(result).to.be.equal(61);
+        done();
+      })
+      .catch(done);
   });
 });
